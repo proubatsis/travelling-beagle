@@ -72,12 +72,80 @@ namespace TravellingBeagle.Providers.Fake
                         Url = "https://www.reddit.com/r/VisitingIceland/comments/5h2j4t/travel_all_the_way_around_iceland_in_4_days/"
                     }
                 }
+            },
+            new CountryModel
+            {
+                Stub = "morocco",
+                Name = "Morocco",
+                Images = new List<string>
+                {
+                    "https://www.intrepidtravel.com/sites/intrepid/files/styles/low-quality/public/elements/product/hero/morocco_essaouria_blue-building-entrance.jpg",
+                    "https://media.gadventures.com/media-server/image_library/3868293_1080x810_Ait_Ben_Haddou_Morocco.jpg",
+                    "https://cdn.theculturetrip.com/wp-content/uploads/2015/11/Morocco-%C2%A9-cdrin-Shutterstock-650x434.jpg",
+                    "https://media.cntraveler.com/photos/57ed6c2c964452525af6cc22/16:9/w_1024,c_limit/Exterior-PalaisAmani-FezMorocco-CRHotel.jpg",
+                    "https://cdn.worldnomads.net/Media/Default/social-share-images/morocco/morocco-scams-social.jpg",
+                    "http://www.thehomesmatchmaker.com/wp-content/uploads/2016/06/morocco.jpg",
+                    "https://cdn.tourradar.com/s3/tour/original/74819_64c6cfe7.jpg",
+                    "https://www.intrepidtravel.com/sites/intrepid/files/styles/low-quality/public/elements/product/hero/morocco_fes_nuts-market-stall.jpg",
+                    "http://cdn.newsapi.com.au/image/v1/bc9869520fd9ce2c1e72f06954dd0a31?width=1024"
+                },
+                RedditLinks = new List<ExternalLink>
+                {
+                    new ExternalLink
+                    {
+                        Title = "[Travel] Morocco itinerary Suggestions",
+                        Url = "https://www.reddit.com/r/Morocco/comments/66whga/travel_morocco_itinerary_suggestions/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Weekly Thread For Travel Related Questions & Discussions - May 20, 2017",
+                        Url = "https://www.reddit.com/r/Morocco/comments/6c7ej1/weekly_thread_for_travel_related_questions/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Morocco - Travel Vid",
+                        Url = "https://www.reddit.com/r/Morocco/comments/6s0vz8/morocco_travel_vid/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Anyone been on Morocco?",
+                        Url = "https://www.reddit.com/r/travel/comments/5xwiz7/anyone_been_on_morocco/"
+                    }
+                },
+                TravelBlogLinks = new List<ExternalLink>
+                {
+                    new ExternalLink
+                    {
+                        Title = "[Travel] Morocco itinerary Suggestions",
+                        Url = "https://www.reddit.com/r/Morocco/comments/66whga/travel_morocco_itinerary_suggestions/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Weekly Thread For Travel Related Questions & Discussions - May 20, 2017",
+                        Url = "https://www.reddit.com/r/Morocco/comments/6c7ej1/weekly_thread_for_travel_related_questions/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Morocco - Travel Vid",
+                        Url = "https://www.reddit.com/r/Morocco/comments/6s0vz8/morocco_travel_vid/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Anyone been on Morocco?",
+                        Url = "https://www.reddit.com/r/travel/comments/5xwiz7/anyone_been_on_morocco/"
+                    }
+                }
             }
         };
 
         public async Task<CountryModel> FindCountryByStub(string countryStub)
         {
             return countries.Find(c => c.Stub.Equals(countryStub));
+        }
+
+        public async Task<List<CountryModel>> GetCountries()
+        {
+            return countries;
         }
     }
 }

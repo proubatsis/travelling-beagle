@@ -8,6 +8,7 @@ namespace TravellingBeagle.Providers
 {
     public interface ICountryProvider
     {
+        Task<List<CountryModel>> GetCountries();
         Task<CountryModel> FindCountryByStub(string countryStub);
     }
 }

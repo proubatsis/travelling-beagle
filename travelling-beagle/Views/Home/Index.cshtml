@@ -1,7 +1,25 @@
-﻿@{
+﻿@model List<CountryModel>
+@{
     ViewData["Title"] = "Home";
 }
 
-<h1>
-    Hello
-</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" />
+}
+
+@section Scripts {
+    <script type="text/javascript" src="~/js/home.js"></script>
+}
+
+<div class="row">
+    <div class="twelve columns">
+        <input class="u-full-width hidden" id="countryFilter" type="text" placeholder="Filter" />
+        @foreach(var country in Model)
+        {
+            <div class="row">
+                <a class="country-link" href="/country/@country.Stub">@country.Name</a>
+            </div>
+        }
+    </div>
+</div>
+
