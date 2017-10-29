@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - travelling_beagle</title>
+
+    <link rel="stylesheet" href="~/lib/skeleton/css/skeleton.css" />
+    <link rel="stylesheet" href="~/lib/skeleton/css/normalize.css" />
+    <link rel="stylesheet" href="~/css/common.css" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div class="cointainer">
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

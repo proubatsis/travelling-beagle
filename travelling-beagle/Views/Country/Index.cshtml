@@ -1,0 +1,33 @@
+﻿@model CountryModel
+@{
+    ViewData["Title"] = "Country";
+    int imageRowSize = (int)Math.Sqrt(Model.Images.Count);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/country.css" />
+}
+
+<div class="row">
+    <div class="name">
+        <h1>
+            @Model.Name
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="one-half column">
+        @for(int i = 0; i < imageRowSize; i++)
+        {
+            <div class="row">
+                @for(int j = 0; j < imageRowSize; j++)
+                {
+                    <div class="one-third column country-image">
+                        <image class="u-max-full-width" src="@Model.Images[i * imageRowSize + j]" />
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

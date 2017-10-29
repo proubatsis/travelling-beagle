@@ -1,0 +1,16 @@
+﻿.country-image {
+    overflow: hidden;
+    padding: 0.25em;
+}
+
+@media (min-width: 400px) {
+    .country-image {
+        max-height: 16em;
+    }
+}
+
+@media (min-width: 1000px) {
+    .country-image {
+        max-height: 8em;
+    }
+}
