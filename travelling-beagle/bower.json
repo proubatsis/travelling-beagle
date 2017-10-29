@@ -2,6 +2,7 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "skeleton": "2.0.4"
+    "skeleton": "2.0.4",
+    "datamaps": "0.5.7"
   }
 }

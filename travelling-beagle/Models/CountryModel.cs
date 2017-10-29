@@ -7,6 +7,7 @@ namespace TravellingBeagle.Models
 {
     public class CountryModel
     {
+        public string IsoCode { get; set; } // ISO ALPHA-3 Code
         public string Stub { get; set; }
         public string Name { get; set; }
         public List<string> Images { get; set; }

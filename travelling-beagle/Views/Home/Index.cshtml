@@ -8,18 +8,26 @@
 }
 
 @section Scripts {
+    <script type="text/javascript" src="~/lib/d3/d3.min.js"></script>
+    <script type="text/javascript" src="~/lib/topojson/topojson.min.js"></script>
+    <script type="text/javascript" src="~/lib/datamaps/dist/datamaps.world.min.js"></script>
     <script type="text/javascript" src="~/js/home.js"></script>
 }
 
 <div class="row">
-    <div class="twelve columns">
+    <div id="mainContainer" class="twelve columns">
         <input class="u-full-width hidden" id="countryFilter" type="text" placeholder="Filter" />
         @foreach(var country in Model)
         {
             <div class="row">
-                <a class="country-link" href="/country/@country.Stub">@country.Name</a>
+                <a data-code="@country.IsoCode" class="country-link" href="/country/@country.Stub">@country.Name</a>
             </div>
         }
     </div>
-</div>
 
+    <div class="six columns">
+        <div id="mapContainer" class="hidden">
+
+        </div>
+    </div>
+</div>

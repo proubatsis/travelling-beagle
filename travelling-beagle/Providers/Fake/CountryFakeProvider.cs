@@ -12,6 +12,7 @@ namespace TravellingBeagle.Providers.Fake
         {
             new CountryModel
             {
+                IsoCode = "ISL",
                 Stub = "iceland",
                 Name = "Iceland",
                 Images = new List<string>
@@ -75,6 +76,7 @@ namespace TravellingBeagle.Providers.Fake
             },
             new CountryModel
             {
+                IsoCode = "MAR",
                 Stub = "morocco",
                 Name = "Morocco",
                 Images = new List<string>
