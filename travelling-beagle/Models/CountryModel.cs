@@ -10,5 +10,7 @@ namespace TravellingBeagle.Models
         public string Stub { get; set; }
         public string Name { get; set; }
         public List<string> Images { get; set; }
+        public List<ExternalLink> RedditLinks { get; set; }
+        public List<ExternalLink> TravelBlogLinks { get; set; }
     }
 }

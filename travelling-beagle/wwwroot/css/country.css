@@ -3,14 +3,37 @@
     padding: 0.25em;
 }
 
+.external-links {
+    list-style: none;
+    padding-left: 1em;
+}
+
+.travel-advisories h3 {
+    font-size: 1.25em;
+    padding-right: 1em;
+    padding-top: 1em;
+}
+
+.travel-advisories td {
+    border: none;
+}
+
 @media (min-width: 400px) {
     .country-image {
         max-height: 16em;
+    }
+
+    .desktop-only {
+        display: none;
     }
 }
 
 @media (min-width: 1000px) {
     .country-image {
         max-height: 8em;
+    }
+
+    .desktop-only {
+        display: block;
     }
 }

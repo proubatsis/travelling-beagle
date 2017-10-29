@@ -25,6 +25,52 @@ namespace TravellingBeagle.Providers.Fake
                     "http://cdn.cnn.com/cnnnext/dam/assets/170612142802-04-best-of-iceland-full-169.jpg",
                     "https://icelandunlimited.is/wp-content/uploads/2016/10/iceland-winter-package.jpg",
                     "https://www.pandotrip.com/wp-content/uploads/2014/04/Iceland-Hallgrimskirkja-Photo-by-Mitch-Russo-740x570.jpg"
+                },
+                RedditLinks = new List<ExternalLink>
+                {
+                    new ExternalLink
+                    {
+                        Title = "What do you think of our Iceland Travel Itinerary?",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/6jgbz2/what_do_you_think_of_our_iceland_travel_itinerary/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Anyone here used WOW to travel to Iceland (from EWR) Recently? Do they weigh?",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/6fmay9/anyone_here_used_wow_to_travel_to_iceland_from/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Iceland travel places map with reviews and video footages",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/6ua47y/iceland_travel_places_map_with_reviews_and_video/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Travel all the way around Iceland in 4 days? (Itinerary)",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/5h2j4t/travel_all_the_way_around_iceland_in_4_days/"
+                    }
+                },
+                TravelBlogLinks = new List<ExternalLink>
+                {
+                    new ExternalLink
+                    {
+                        Title = "What do you think of our Iceland Travel Itinerary?",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/6jgbz2/what_do_you_think_of_our_iceland_travel_itinerary/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Anyone here used WOW to travel to Iceland (from EWR) Recently? Do they weigh?",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/6fmay9/anyone_here_used_wow_to_travel_to_iceland_from/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Iceland travel places map with reviews and video footages",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/6ua47y/iceland_travel_places_map_with_reviews_and_video/"
+                    },
+                    new ExternalLink
+                    {
+                        Title = "Travel all the way around Iceland in 4 days? (Itinerary)",
+                        Url = "https://www.reddit.com/r/VisitingIceland/comments/5h2j4t/travel_all_the_way_around_iceland_in_4_days/"
+                    }
                 }
             }
         };

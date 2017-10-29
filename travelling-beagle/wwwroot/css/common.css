@@ -1,3 +1,15 @@
 ﻿body {
     font-family: 'Times New Roman', Times, serif;
+    background: #386AAF;
+    color: #DBB8A4;
+}
+
+a {
+    color: #F1FDFD;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C0CACA;
 }
