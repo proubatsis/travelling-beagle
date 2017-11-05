@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TravellingBeagle.Services;
 using TravellingBeagle.Services.Fake;
+using TravellingBeagle.Util;
+using TravellingBeagle.Services.External;
 
 namespace TravellingBeagle
 {
@@ -24,7 +26,9 @@ namespace TravellingBeagle
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<ICountryService, CountryFakeService>();
+            services.AddSingleton<BeagleConfig>(new BeagleConfig(Configuration));
+            services.AddTransient<ICountryService, CountryService>();
+            services.AddTransient<IRestService, RestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
