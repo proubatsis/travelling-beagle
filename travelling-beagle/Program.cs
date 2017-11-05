@@ -20,6 +20,7 @@ namespace TravellingBeagle
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .ConfigureLogging(logging => logging.AddConsole())
                 .Build();
     }
 }

@@ -19,7 +19,9 @@ namespace TravellingBeagle.Services
         public async Task<CountryModel> FindCountryByStub(string countryStub)
         {
             var details = await this.restService.GetCountryDetails(countryStub);
-            return BuildModel(details, new List<string>(), new List<ExternalLink>(), new List<ExternalLink>());
+            var images = await this.restService.GetImageUrls(details.Name);
+
+            return BuildModel(details, images.Take(9).ToList(), new List<ExternalLink>(), new List<ExternalLink>());
         }
 
         public async Task<List<CountryModel>> GetCountries()

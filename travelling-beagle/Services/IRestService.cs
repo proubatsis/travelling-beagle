@@ -10,5 +10,6 @@ namespace TravellingBeagle.Services
     {
         Task<List<CountryDetailsModel>> GetCountries();
         Task<CountryDetailsModel> GetCountryDetails(string countryIso);
+        Task<List<string>> GetImageUrls(string q);
     }
 }
