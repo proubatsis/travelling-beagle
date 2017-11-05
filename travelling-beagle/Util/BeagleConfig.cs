@@ -66,5 +66,23 @@ namespace TravellingBeagle.Util
                     EnvironmentVariableTarget.User);
             }
         }
+
+        public string ExtWeatherUrl
+        {
+            get
+            {
+                return _configuration["ExternalServices:Weather:Url"];
+            }
+        }
+
+        public string ExtWeatherApiKey
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable(
+                    _configuration["ExternalServices:Weather:ApiKeyEnvironmentVariable"],
+                    EnvironmentVariableTarget.User);
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ using TravellingBeagle.Util;
 using TravellingBeagle.Models.External.Google.GeoCode;
 using TravellingBeagle.Models.External.Google.Timezone;
 using TravellingBeagle.Extensions;
+using TravellingBeagle.Models.External.OpenWeatherMap;
 
 namespace TravellingBeagle.Services.External
 {
@@ -101,6 +102,16 @@ namespace TravellingBeagle.Services.External
             }
 
             return 0.0;
+        }
+
+        public Task<WeatherResponse> GetWeatherAtCoordinates(double longitude, double latitude)
+        {
+            return Get<WeatherResponse>(String.Format(
+                "{0}?lat={1}&lon={2}&appid={3}",
+                _config.ExtWeatherUrl,
+                latitude,
+                longitude,
+                _config.ExtWeatherApiKey));
         }
     }
 }

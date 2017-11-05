@@ -15,9 +15,10 @@
         </h1>
 
         <h2>
-            @Model.CapitalCity
-            @Model.TimeInCapital.ToShortDateString()
-            @Model.TimeInCapital.ToShortTimeString()
+            @Model.CapitalCity.Name
+            @Model.CapitalCity.LocalizedDateTime.ToShortDateString()
+            @Model.CapitalCity.LocalizedDateTime.ToShortTimeString()
+            @Model.CapitalCity.DegreesInCelsius &#176; C
         </h2>
     </div>
 </div>
