@@ -5,22 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TravellingBeagle.Models;
-using TravellingBeagle.Providers;
+using TravellingBeagle.Services;
 
 namespace TravellingBeagle.Controllers
 {
     public class HomeController : Controller
     {
-        private ICountryProvider countryProvider;
+        private ICountryService countryService;
 
-        public HomeController(ICountryProvider countryProvider)
+        public HomeController(ICountryService countryService)
         {
-            this.countryProvider = countryProvider;
+            this.countryService = countryService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var countries = await countryProvider.GetCountries();
+            var countries = await countryService.GetCountries();
             return View(countries);
         }
 

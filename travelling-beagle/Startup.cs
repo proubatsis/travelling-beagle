@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TravellingBeagle.Providers;
-using TravellingBeagle.Providers.Fake;
+using TravellingBeagle.Services;
+using TravellingBeagle.Services.Fake;
 
 namespace TravellingBeagle
 {
@@ -24,7 +24,7 @@ namespace TravellingBeagle
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<ICountryProvider, CountryFakeProvider>();
+            services.AddTransient<ICountryService, CountryFakeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

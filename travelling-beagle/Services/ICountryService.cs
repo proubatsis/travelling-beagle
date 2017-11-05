@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravellingBeagle.Models;
 
-namespace TravellingBeagle.Providers
+namespace TravellingBeagle.Services
 {
-    public interface ICountryProvider
+    public interface ICountryService
     {
         Task<List<CountryModel>> GetCountries();
         Task<CountryModel> FindCountryByStub(string countryStub);

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravellingBeagle.Models;
 
-namespace TravellingBeagle.Providers.Fake
+namespace TravellingBeagle.Services.Fake
 {
-    public class CountryFakeProvider : ICountryProvider
+    public class CountryFakeService : ICountryService
     {
         private List<CountryModel> countries = new List<CountryModel>
         {

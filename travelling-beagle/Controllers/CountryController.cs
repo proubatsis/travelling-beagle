@@ -4,24 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TravellingBeagle.Models;
-using TravellingBeagle.Providers;
+using TravellingBeagle.Services;
 
 namespace TravellingBeagle.Controllers
 {
     [Route("country")]
     public class CountryController : Controller
     {
-        private ICountryProvider countryProvider;
+        private ICountryService countryService;
 
-        public CountryController(ICountryProvider countryProvider)
+        public CountryController(ICountryService countryService)
         {
-            this.countryProvider = countryProvider;
+            this.countryService = countryService;
         }
 
         [Route("{stub}")]
         public async Task<IActionResult> Index(string stub)
         {
-            var country = await countryProvider.FindCountryByStub(stub);
+            var country = await countryService.FindCountryByStub(stub);
             
             if (country != null)
             {
