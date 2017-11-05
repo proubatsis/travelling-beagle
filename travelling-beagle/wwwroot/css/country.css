@@ -18,6 +18,17 @@
     border: none;
 }
 
+.name h1 {
+    display: inline;
+    font-size: 2em;
+}
+
+.name h2 {
+    display: inline;
+    font-size: 2em;
+    float: right;
+}
+
 @media (min-width: 400px) {
     .country-image {
         max-height: 16em;

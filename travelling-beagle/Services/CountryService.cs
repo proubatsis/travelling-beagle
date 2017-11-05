@@ -21,21 +21,31 @@ namespace TravellingBeagle.Services
             var details = await this.restService.GetCountryDetails(countryStub);
             var images = await this.restService.GetImageUrls(details.Name);
 
-            return BuildModel(details, images.Take(9).ToList(), new List<ExternalLink>(), new List<ExternalLink>());
+            var coord = await this.restService.GetCoordinates(details);
+            var utcOffset = await this.restService.GetUtcOffsetAtCoordinates(coord.Longitude, coord.Latitude);
+
+            return BuildModel(
+                details,
+                DateTime.UtcNow.AddSeconds(utcOffset),
+                images.Take(9).ToList(),
+                new List<ExternalLink>(),
+                new List<ExternalLink>());
         }
 
         public async Task<List<CountryModel>> GetCountries()
         {
             var detailsList = await this.restService.GetCountries();
-            var models = from details in detailsList select BuildModel(details, null, null, null);
+            var models = from details in detailsList select BuildModel(details, null, null, null, null);
             return models.ToList();
         }
 
-        private static CountryModel BuildModel(CountryDetailsModel details, List<string> images, List<ExternalLink> reddit, List<ExternalLink> blog)
+        private static CountryModel BuildModel(CountryDetailsModel details, DateTime? capitalTime, List<string> images, List<ExternalLink> reddit, List<ExternalLink> blog)
         {
             return new CountryModel
             {
                 Name = details.Name,
+                CapitalCity = details.CapitalCity,
+                TimeInCapital = capitalTime.GetValueOrDefault(DateTime.UtcNow),
                 IsoCode = details.Iso3,
                 Stub = details.Iso3,
                 Images = images,

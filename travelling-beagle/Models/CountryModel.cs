@@ -10,6 +10,10 @@ namespace TravellingBeagle.Models
         public string IsoCode { get; set; } // ISO ALPHA-3 Code
         public string Stub { get; set; }
         public string Name { get; set; }
+        public string CapitalCity { get; set; }
+
+        public DateTime TimeInCapital { get; set; }
+
         public List<string> Images { get; set; }
         public List<ExternalLink> RedditLinks { get; set; }
         public List<ExternalLink> TravelBlogLinks { get; set; }

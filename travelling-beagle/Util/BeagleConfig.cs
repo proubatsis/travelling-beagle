@@ -8,25 +8,18 @@ namespace TravellingBeagle.Util
 {
     public class BeagleConfig
     {
-        private string extCountryServiceUrl;
-        private string extImagesUrl;
-        private string extImagesApiKey;
+        private IConfiguration _configuration;
 
         public BeagleConfig(IConfiguration configuration)
         {
-            this.extCountryServiceUrl = configuration["ExternalServices:Countries:Url"];
-
-            this.extImagesUrl = configuration["ExternalServices:Images:Url"];
-            this.extImagesApiKey = Environment.GetEnvironmentVariable(
-                configuration["ExternalServices:Images:ApiKeyEnvironmentVariable"],
-                EnvironmentVariableTarget.User);
+            _configuration = configuration;
         }
 
         public string ExtCountryServiceUrl
         {
             get
             {
-                return extCountryServiceUrl;
+                return _configuration["ExternalServices:Countries:Url"];
             }
         }
 
@@ -34,7 +27,7 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return extImagesUrl;
+                return _configuration["ExternalServices:Images:Url"];
             }
         }
 
@@ -42,7 +35,35 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return extImagesApiKey;
+                return Environment.GetEnvironmentVariable(
+                    _configuration["ExternalServices:Images:ApiKeyEnvironmentVariable"],
+                    EnvironmentVariableTarget.User);
+            }
+        }
+
+        public string ExtGoogleGeoCodeUrl
+        {
+            get
+            {
+                return _configuration["ExternalServices:Google:GeoCodeUrl"];
+            }
+        }
+
+        public string ExtGoogleTimezoneUrl
+        {
+            get
+            {
+                return _configuration["ExternalServices:Google:TimezoneUrl"];
+            }
+        }
+
+        public string ExtGoogleApiKey
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable(
+                    _configuration["ExternalServices:Google:ApiKeyEnvironmentVariable"],
+                    EnvironmentVariableTarget.User);
             }
         }
     }

@@ -13,6 +13,12 @@
         <h1>
             @Model.Name
         </h1>
+
+        <h2>
+            @Model.CapitalCity
+            @Model.TimeInCapital.ToShortDateString()
+            @Model.TimeInCapital.ToShortTimeString()
+        </h2>
     </div>
 </div>
 

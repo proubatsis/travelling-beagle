@@ -10,6 +10,9 @@ using System.Web;
 using TravellingBeagle.Models.External;
 using TravellingBeagle.Models.External.Pixabay;
 using TravellingBeagle.Util;
+using TravellingBeagle.Models.External.Google.GeoCode;
+using TravellingBeagle.Models.External.Google.Timezone;
+using TravellingBeagle.Extensions;
 
 namespace TravellingBeagle.Services.External
 {
@@ -63,6 +66,41 @@ namespace TravellingBeagle.Services.External
                 ));
             var urls = from hit in searchResponse.Hits select hit.Url;
             return urls.ToList();
+        }
+
+        public async Task<Coordinates> GetCoordinates(CountryDetailsModel details)
+        {
+            var response = await Get<GeoCodeResponse>(String.Format(
+                "{0}?address={1},{2}&key={3}",
+                _config.ExtGoogleGeoCodeUrl,
+                HttpUtility.UrlEncode(details.CapitalCity),
+                HttpUtility.UrlEncode(details.Name),
+                _config.ExtGoogleApiKey));
+            
+            if (response.Status.Equals("OK") && response.Results != null && response.Results.Count > 0)
+            {
+                return response.Results[0].Geometry.Location;
+            }
+
+            return null;
+        }
+
+        public async Task<double> GetUtcOffsetAtCoordinates(double longitude, double latitude)
+        {
+            var response = await Get<TimezoneResponse>(String.Format(
+                "{0}?location={1},{2}&timestamp={3}&key={4}",
+                _config.ExtGoogleTimezoneUrl,
+                latitude,
+                longitude,
+                DateTime.UtcNow.GetEpochTime(),
+                _config.ExtGoogleApiKey));
+
+            if (response.Status.Equals("OK"))
+            {
+                return response.RawOffset;
+            }
+
+            return 0.0;
         }
     }
 }
