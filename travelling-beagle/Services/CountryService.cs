@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TravellingBeagle.Models;
 using TravellingBeagle.Models.Country;
 using TravellingBeagle.Models.External;
+using TravellingBeagle.Models.External.Advisories;
 using TravellingBeagle.Models.External.Reddit;
 using TravellingBeagle.Util;
 
@@ -41,12 +42,15 @@ namespace TravellingBeagle.Services
             var redditInternalPosts = from post in redditPosts where post.Url.Contains("reddit.com") select post;
             var redditExternalPosts = from post in redditPosts where !post.Url.Contains("reddit.com") select post;
 
+            var travelAdvisory = await _restService.GetTravelAdvisory(details);
+
             return BuildModel(
                 details,
                 BuildCity(
                     details,
                     DateTime.UtcNow.AddSeconds(utcOffset),
                     Math.Floor(Temperature.KelvinToCelsius(weatherResponse.Main.TemperatureInKelvin))),
+                BuildAdvisory(travelAdvisory),
                 images.Take(MAX_IMAGES).ToList(),
                 redditInternalPosts.Take(6).ToList(),
                 redditExternalPosts.Take(6).ToList());
@@ -55,11 +59,11 @@ namespace TravellingBeagle.Services
         public async Task<List<CountryModel>> GetCountries()
         {
             var detailsList = await _restService.GetCountries();
-            var models = from details in detailsList select BuildModel(details, null, null, null, null);
+            var models = from details in detailsList select BuildModel(details, null, null, null, null, null);
             return models.ToList();
         }
 
-        private static CountryModel BuildModel(CountryDetailsModel details, CityModel capital, List<string> images, List<ExternalLink> reddit, List<ExternalLink> redditExt)
+        private static CountryModel BuildModel(CountryDetailsModel details, CityModel capital, AdvisoryModel advisory,List<string> images, List<ExternalLink> reddit, List<ExternalLink> redditExt)
         {
             return new CountryModel
             {
@@ -69,7 +73,8 @@ namespace TravellingBeagle.Services
                 Stub = details.Iso3,
                 Images = images,
                 RedditLinks = redditExt,
-                RedditDiscussionLinks = reddit
+                RedditDiscussionLinks = reddit,
+                TravelAdvisory = advisory
             };
         }
 
@@ -80,6 +85,16 @@ namespace TravellingBeagle.Services
                 Name = details.CapitalCity,
                 LocalizedDateTime = localized.GetValueOrDefault(DateTime.UtcNow),
                 DegreesInCelsius = degreesCelsius
+            };
+        }
+
+        private static AdvisoryModel BuildAdvisory(AdvisoryResponse response)
+        {
+            return new AdvisoryModel
+            {
+                AdvisoryUrl = response.Data.Lang.En.UrlDetails,
+                Description = response.Data.Lang.En.Advice,
+                Rating = (int) Double.Parse(response.Data.Situation.Rating)
             };
         }
 

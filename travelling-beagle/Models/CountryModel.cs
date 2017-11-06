@@ -13,6 +13,7 @@ namespace TravellingBeagle.Models
         public string Name { get; set; }
 
         public CityModel CapitalCity { get; set; }
+        public AdvisoryModel TravelAdvisory { get; set; }
 
         public List<string> Images { get; set; }
         public List<ExternalLink> RedditDiscussionLinks { get; set; }

@@ -15,10 +15,6 @@
     padding-top: 1em;
 }
 
-.travel-advisories td {
-    border: none;
-}
-
 .name h1 {
     display: inline;
     font-size: 2em;
@@ -28,6 +24,35 @@
     display: inline;
     font-size: 2em;
     padding-right: 1em;
+}
+
+.rating {
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+.rating-0 {
+    color: #49ff00;
+}
+
+.rating-1 {
+    color: #2eaf00;
+}
+
+.rating-2 {
+    color: #00b7ff;
+}
+
+.rating-3 {
+    color: #ffd400;
+}
+
+.rating-4 {
+    color: #ff7d00;
+}
+
+.rating-5 {
+    color: #ff0000;
 }
 
 #overlay {

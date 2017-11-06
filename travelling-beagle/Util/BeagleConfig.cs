@@ -120,5 +120,13 @@ namespace TravellingBeagle.Util
                     EnvironmentVariableTarget.User);
             }
         }
+
+        public string ExtAdvisoryUrl
+        {
+            get
+            {
+                return _configuration["ExternalServices:TravelAdvisories:Url"];
+            }
+        }
     }
 }

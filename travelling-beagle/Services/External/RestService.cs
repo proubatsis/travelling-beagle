@@ -16,6 +16,7 @@ using TravellingBeagle.Extensions;
 using TravellingBeagle.Models.External.OpenWeatherMap;
 using TravellingBeagle.Models.External.Reddit;
 using System.Text;
+using TravellingBeagle.Models.External.Advisories;
 
 namespace TravellingBeagle.Services.External
 {
@@ -162,6 +163,11 @@ namespace TravellingBeagle.Services.External
             return GetWithHeaders<RedditSearchResponse>(
                 String.Format("{0}/search?q={1}", _config.ExtRedditUrl, HttpUtility.UrlEncode(q)),
                 headers);
+        }
+
+        public Task<AdvisoryResponse> GetTravelAdvisory(CountryDetailsModel details)
+        {
+            return Get<AdvisoryResponse>(String.Format("{0}?country={1}", _config.ExtAdvisoryUrl, details.Iso2));
         }
     }
 }
