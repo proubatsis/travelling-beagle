@@ -15,7 +15,7 @@ namespace TravellingBeagle.Models
         public CityModel CapitalCity { get; set; }
 
         public List<string> Images { get; set; }
+        public List<ExternalLink> RedditDiscussionLinks { get; set; }
         public List<ExternalLink> RedditLinks { get; set; }
-        public List<ExternalLink> TravelBlogLinks { get; set; }
     }
 }

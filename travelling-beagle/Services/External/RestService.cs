@@ -14,6 +14,8 @@ using TravellingBeagle.Models.External.Google.GeoCode;
 using TravellingBeagle.Models.External.Google.Timezone;
 using TravellingBeagle.Extensions;
 using TravellingBeagle.Models.External.OpenWeatherMap;
+using TravellingBeagle.Models.External.Reddit;
+using System.Text;
 
 namespace TravellingBeagle.Services.External
 {
@@ -28,11 +30,40 @@ namespace TravellingBeagle.Services.External
             _logger = logger;
         }
 
-        private async Task<T> Get<T>(string url)
+        private Task<T> Get<T>(string url)
+        {
+            return GetWithHeaders<T>(url, new Dictionary<string, string>());
+        }
+
+        private async Task<T> GetWithHeaders<T>(string url, Dictionary<string, string> headers)
         {
             _logger.LogDebug("GET Request: {0}", url);
 
             var request = WebRequest.Create(url);
+
+            foreach (var header in headers.ToList())
+            {
+                request.Headers.Add(header.Key, header.Value);
+            }
+
+            var response = await request.GetResponseAsync();
+            var reader = new StreamReader(response.GetResponseStream());
+            var responseBody = await reader.ReadToEndAsync();
+            reader.Close();
+
+            return JsonConvert.DeserializeObject<T>(responseBody);
+        }
+
+        private async Task<T> PostWithBasicAuth<T>(string url, string username, string password)
+        {
+            _logger.LogDebug("POST/BASIC-AUTH: {0} - {1}:{2}", url, username, password);
+
+            var request = WebRequest.Create(url);
+            request.Method = "POST";
+            request.Headers.Add(
+                "Authorization",
+                String.Format("Basic {0}", Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(username + ":" + password))));
+
             var response = await request.GetResponseAsync();
             var reader = new StreamReader(response.GetResponseStream());
             var responseBody = await reader.ReadToEndAsync();
@@ -112,6 +143,25 @@ namespace TravellingBeagle.Services.External
                 latitude,
                 longitude,
                 _config.ExtWeatherApiKey));
+        }
+
+        public Task<AuthorizationResponse> AuthorizeReddit()
+        {
+            return PostWithBasicAuth<AuthorizationResponse>(
+                _config.ExtRedditAuthorizeUrl,
+                _config.ExtRedditClientId,
+                _config.ExtRedditClientSecret);
+        }
+
+        public Task<RedditSearchResponse> SearchReddit(string q, AuthorizationResponse authorization)
+        {
+            var headers = new Dictionary<string, string>();
+            headers.Add("Authorization", String.Format("{0} {1}", authorization.TokenType, authorization.AccessToken));
+            headers.Add("User-Agent", "TravellingBeagle");
+
+            return GetWithHeaders<RedditSearchResponse>(
+                String.Format("{0}/search?q={1}", _config.ExtRedditUrl, HttpUtility.UrlEncode(q)),
+                headers);
         }
     }
 }

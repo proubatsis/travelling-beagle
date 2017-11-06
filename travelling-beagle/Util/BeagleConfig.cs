@@ -84,5 +84,41 @@ namespace TravellingBeagle.Util
                     EnvironmentVariableTarget.User);
             }
         }
+
+        public string ExtRedditAuthorizeUrl
+        {
+            get
+            {
+                return _configuration["ExternalServices:Reddit:AuthorizeUrl"];
+            }
+        }
+
+        public string ExtRedditUrl
+        {
+            get
+            {
+                return _configuration["ExternalServices:Reddit:Url"];
+            }
+        }
+
+        public string ExtRedditClientId
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable(
+                    _configuration["ExternalServices:Reddit:ClientIdEnvironmentVariable"],
+                    EnvironmentVariableTarget.User);
+            }
+        }
+
+        public string ExtRedditClientSecret
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable(
+                    _configuration["ExternalServices:Reddit:ClientSecretEnvironmentVariable"],
+                    EnvironmentVariableTarget.User);
+            }
+        }
     }
 }

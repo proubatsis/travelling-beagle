@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TravellingBeagle.Models.External;
 using TravellingBeagle.Models.External.Google.GeoCode;
 using TravellingBeagle.Models.External.OpenWeatherMap;
+using TravellingBeagle.Models.External.Reddit;
 
 namespace TravellingBeagle.Services
 {
@@ -19,5 +20,8 @@ namespace TravellingBeagle.Services
         Task<double> GetUtcOffsetAtCoordinates(double longitude, double latitude);
 
         Task<WeatherResponse> GetWeatherAtCoordinates(double longitude, double latitude);
+
+        Task<AuthorizationResponse> AuthorizeReddit();
+        Task<RedditSearchResponse> SearchReddit(string q, AuthorizationResponse authorization);
     }
 }

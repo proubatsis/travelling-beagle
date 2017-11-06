@@ -59,9 +59,9 @@
 
 <div class="row">
     <div class="one-half column">
-        <h2>Reddit</h2>
+        <h2>Reddit Discussions</h2>
         <ul class="external-links">
-            @foreach (var link in Model.RedditLinks)
+            @foreach (var link in Model.RedditDiscussionLinks)
             {
                 <li><a href="@link.Url">@link.Title</a></li>
             }
@@ -69,9 +69,9 @@
     </div>
 
     <div class="one-half column">
-        <h2>Travel Blogs</h2>
+        <h2>Reddit Links</h2>
         <ul class="external-links">
-            @foreach (var link in Model.TravelBlogLinks)
+            @foreach (var link in Model.RedditLinks)
             {
                 <li><a href="@link.Url">@link.Title</a></li>
             }

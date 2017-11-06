@@ -50,7 +50,7 @@ namespace TravellingBeagle.Services.Fake
                         Url = "https://www.reddit.com/r/VisitingIceland/comments/5h2j4t/travel_all_the_way_around_iceland_in_4_days/"
                     }
                 },
-                TravelBlogLinks = new List<ExternalLink>
+                RedditDiscussionLinks = new List<ExternalLink>
                 {
                     new ExternalLink
                     {
@@ -114,7 +114,7 @@ namespace TravellingBeagle.Services.Fake
                         Url = "https://www.reddit.com/r/travel/comments/5xwiz7/anyone_been_on_morocco/"
                     }
                 },
-                TravelBlogLinks = new List<ExternalLink>
+                RedditDiscussionLinks = new List<ExternalLink>
                 {
                     new ExternalLink
                     {
