@@ -1,6 +1,7 @@
 ﻿.country-image {
     overflow: hidden;
     padding: 0.25em;
+    cursor: pointer;
 }
 
 .external-links {
@@ -27,6 +28,34 @@
     display: inline;
     font-size: 2em;
     padding-right: 1em;
+}
+
+#overlay {
+    display: none;
+    z-index: 100;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(53, 53, 53, 0.8);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#overlayImage {
+    position: absolute;
+    top: 8em;
+}
+
+#overlayX {
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    cursor: pointer;
+}
+
+#overlayX:hover {
+    color: #fff;
 }
 
 @media (min-width: 400px) {

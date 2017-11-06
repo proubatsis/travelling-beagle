@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="~/css/country.css" />
 }
 
+@section Scripts {
+    <script type="text/javascript" src="~/js/country.js"></script>
+}
+
 <div class="row">
     <div class="six columns name">
         <h1>
@@ -36,7 +40,7 @@
                 @for (int j = 0; j < imageRowSize; j++)
                 {
                     <div class="one-third column country-image @(i > 0 ? "desktop-only" : "")">
-                        <image class="u-max-full-width" src="@Model.Images[i * imageRowSize + j]" />
+                        <image class="country-image-src u-max-full-width" src="@Model.Images[i * imageRowSize + j]" />
                     </div>
                 }
             </div>
@@ -82,4 +86,9 @@
             }
         </ul>
     </div>
+</div>
+
+<div id="overlay">
+    <span id="overlayX">X</span>
+    <img id="overlayImage" />
 </div>

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Client\country.ts" />
     <None Remove="Client\home.ts" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="Client\country.ts" />
     <TypeScriptCompile Include="Client\home.ts" />
   </ItemGroup>
 
