@@ -17,29 +17,46 @@ using TravellingBeagle.Models.External.OpenWeatherMap;
 using TravellingBeagle.Models.External.Reddit;
 using System.Text;
 using TravellingBeagle.Models.External.Advisories;
+using TravellingBeagle.Caching;
 
 namespace TravellingBeagle.Services.External
 {
     public class RestService : IRestService
     {
+        private const double CACHE_TTL_STANDARD = 259200.0;
+        private const double CACHE_TTL_SHORT = 3600.0;
+
         private BeagleConfig _config;
         private ILogger<RestService> _logger;
+        private IBeagleCache _cache;
 
-        public RestService(BeagleConfig config, ILogger<RestService> logger)
+        public RestService(BeagleConfig config, ILogger<RestService> logger, IBeagleCache cache)
         {
             _config = config;
             _logger = logger;
+            _cache = cache;
         }
 
-        private Task<T> Get<T>(string url)
+        private Task<T> Get<T>(string url, bool useCache = true, double ttlSeconds = CACHE_TTL_STANDARD)
         {
-            return GetWithHeaders<T>(url, new Dictionary<string, string>());
+            return GetWithHeaders<T>(url, new Dictionary<string, string>(), useCache, ttlSeconds);
         }
 
-        private async Task<T> GetWithHeaders<T>(string url, Dictionary<string, string> headers)
+        private async Task<T> GetWithHeaders<T>(string url, Dictionary<string, string> headers, bool useCache = true, double ttlSeconds = CACHE_TTL_STANDARD)
         {
-            _logger.LogDebug("GET Request: {0}", url);
+            var cacheKey = url + "|" + String.Join("|", from h in headers.ToList() select String.Format("{0}: {1}", h.Key, h.Value));
 
+            if(useCache)
+            {
+                var cached = await _cache.GetFromCache(cacheKey);
+
+                if (cached != null)
+                {
+                    return JsonConvert.DeserializeObject<T>(cached);
+                }
+            }
+
+            _logger.LogInformation("GET Request: {0}", url);
             var request = WebRequest.Create(url);
 
             foreach (var header in headers.ToList())
@@ -52,12 +69,13 @@ namespace TravellingBeagle.Services.External
             var responseBody = await reader.ReadToEndAsync();
             reader.Close();
 
+            if(useCache) await _cache.Cache(cacheKey, responseBody, ttlSeconds);
             return JsonConvert.DeserializeObject<T>(responseBody);
         }
 
         private async Task<T> PostWithBasicAuth<T>(string url, string username, string password)
         {
-            _logger.LogDebug("POST/BASIC-AUTH: {0} - {1}:{2}", url, username, password);
+            _logger.LogInformation("POST/BASIC-AUTH: {0} - {1}:{2}", url, username, password);
 
             var request = WebRequest.Create(url);
             request.Method = "POST";
@@ -126,7 +144,7 @@ namespace TravellingBeagle.Services.External
                 latitude,
                 longitude,
                 DateTime.UtcNow.GetEpochTime(),
-                _config.ExtGoogleApiKey));
+                _config.ExtGoogleApiKey), false);
 
             if (response.Status.Equals("OK"))
             {
@@ -143,7 +161,7 @@ namespace TravellingBeagle.Services.External
                 _config.ExtWeatherUrl,
                 latitude,
                 longitude,
-                _config.ExtWeatherApiKey));
+                _config.ExtWeatherApiKey), true, CACHE_TTL_SHORT);
         }
 
         public Task<AuthorizationResponse> AuthorizeReddit()

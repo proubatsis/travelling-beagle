@@ -10,6 +10,7 @@ using TravellingBeagle.Services;
 using TravellingBeagle.Services.Fake;
 using TravellingBeagle.Util;
 using TravellingBeagle.Services.External;
+using TravellingBeagle.Caching;
 
 namespace TravellingBeagle
 {
@@ -27,6 +28,7 @@ namespace TravellingBeagle
         {
             services.AddMvc();
             services.AddSingleton<BeagleConfig>(new BeagleConfig(Configuration));
+            services.AddSingleton<IBeagleCache>(new DictCache());
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IRestService, RestService>();
         }
