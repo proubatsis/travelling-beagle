@@ -18,16 +18,13 @@ namespace TravellingBeagle.Services
         private IRestService _restService;
 
         // Reddit API
-        private DateTime _refreshRedditTime;
-        private AuthorizationResponse _redditAuthorization;
+        private static DateTime _refreshRedditTime = DateTime.UtcNow;
+        private static AuthorizationResponse _redditAuthorization = null;
 
 
         public CountryService(IRestService restService)
         {
             _restService = restService;
-
-            _refreshRedditTime = DateTime.UtcNow;
-            _redditAuthorization = null;
         }
 
         public async Task<CountryModel> FindCountryByStub(string countryStub)
