@@ -10,4 +10,9 @@
     #mapContainer {
         display: block;
     }
+
+    #countryContainer {
+        overflow-y: scroll;
+        max-height: 48em;
+    }
 }

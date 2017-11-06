@@ -17,12 +17,14 @@
 <div class="row">
     <div id="mainContainer" class="twelve columns">
         <input class="u-full-width hidden" id="countryFilter" type="text" placeholder="Filter" />
-        @foreach(var country in Model)
-        {
-            <div class="row">
-                <a data-code="@country.IsoCode" class="country-link" href="/country/@country.Stub">@country.Name</a>
-            </div>
-        }
+        <div id="countryContainer">
+            @foreach (var country in Model)
+            {
+                <div class="row">
+                    <a data-code="@country.IsoCode" class="country-link" href="/country/@country.Stub">@country.Name</a>
+                </div>
+            }
+        </div>
     </div>
 
     <div class="six columns">

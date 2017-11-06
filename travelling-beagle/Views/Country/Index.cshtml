@@ -9,15 +9,20 @@
 }
 
 <div class="row">
-    <div class="name">
+    <div class="six columns name">
         <h1>
             @Model.Name
         </h1>
-
+    </div>
+    <div class="six columns name">
         <h2>
             @Model.CapitalCity.Name
+        </h2>
+        <h2>
             @Model.CapitalCity.LocalizedDateTime.ToShortDateString()
             @Model.CapitalCity.LocalizedDateTime.ToShortTimeString()
+        </h2>
+        <h2>
             @Model.CapitalCity.DegreesInCelsius &#176; C
         </h2>
     </div>

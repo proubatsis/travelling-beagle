@@ -26,7 +26,7 @@
 .name h2 {
     display: inline;
     font-size: 2em;
-    float: right;
+    padding-right: 1em;
 }
 
 @media (min-width: 400px) {
@@ -39,7 +39,7 @@
     }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 750px) {
     .country-image {
         max-height: 8em;
     }
