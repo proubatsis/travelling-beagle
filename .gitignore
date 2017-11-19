@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 /travelling-beagle/wwwroot/lib
+/travelling-beagle/Client/home.js
+/travelling-beagle/Client/country.js
+/travelling-beagle/Client/common.js

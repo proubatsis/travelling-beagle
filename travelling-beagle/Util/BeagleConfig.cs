@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,10 +9,24 @@ namespace TravellingBeagle.Util
     public class BeagleConfig
     {
         private IConfiguration _configuration;
+        private IDictionary _envVariables;
+        private bool _isLinux;
 
         public BeagleConfig(IConfiguration configuration)
         {
             _configuration = configuration;
+            _envVariables = Environment.GetEnvironmentVariables();
+            _isLinux = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux);
+        }
+
+        private string GetEnv(string key)
+        {
+            if (_isLinux)
+            {
+                return _configuration[key].ToString();
+            }
+
+            return Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User);
         }
 
         public string ExtCountryServiceUrl
@@ -35,9 +49,7 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return Environment.GetEnvironmentVariable(
-                    _configuration["ExternalServices:Images:ApiKeyEnvironmentVariable"],
-                    EnvironmentVariableTarget.User);
+                return GetEnv(_configuration["ExternalServices:Images:ApiKeyEnvironmentVariable"]);
             }
         }
 
@@ -61,9 +73,7 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return Environment.GetEnvironmentVariable(
-                    _configuration["ExternalServices:Google:ApiKeyEnvironmentVariable"],
-                    EnvironmentVariableTarget.User);
+                return GetEnv(_configuration["ExternalServices:Google:ApiKeyEnvironmentVariable"]);
             }
         }
 
@@ -79,9 +89,7 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return Environment.GetEnvironmentVariable(
-                    _configuration["ExternalServices:Weather:ApiKeyEnvironmentVariable"],
-                    EnvironmentVariableTarget.User);
+                return GetEnv(_configuration["ExternalServices:Weather:ApiKeyEnvironmentVariable"]);
             }
         }
 
@@ -105,9 +113,7 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return Environment.GetEnvironmentVariable(
-                    _configuration["ExternalServices:Reddit:ClientIdEnvironmentVariable"],
-                    EnvironmentVariableTarget.User);
+                return GetEnv(_configuration["ExternalServices:Reddit:ClientIdEnvironmentVariable"]);
             }
         }
 
@@ -115,9 +121,7 @@ namespace TravellingBeagle.Util
         {
             get
             {
-                return Environment.GetEnvironmentVariable(
-                    _configuration["ExternalServices:Reddit:ClientSecretEnvironmentVariable"],
-                    EnvironmentVariableTarget.User);
+                return GetEnv(_configuration["ExternalServices:Reddit:ClientSecretEnvironmentVariable"]);
             }
         }
 
