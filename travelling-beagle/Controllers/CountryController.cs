@@ -32,5 +32,12 @@ namespace TravellingBeagle.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet("all.json")]
+        public async Task<IActionResult> AllCountries()
+        {
+            var countries = await countryService.GetCountries();
+            return Ok(countries);
+        }
     }
 }

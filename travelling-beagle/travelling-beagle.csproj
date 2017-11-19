@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Client\common.ts" />
     <None Remove="Client\country.ts" />
     <None Remove="Client\home.ts" />
   </ItemGroup>
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="Client\common.ts" />
     <TypeScriptCompile Include="Client\country.ts" />
     <TypeScriptCompile Include="Client\home.ts" />
   </ItemGroup>
@@ -39,7 +41,7 @@
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile />
+    <TypeScriptOutFile></TypeScriptOutFile>
     <TypeScriptOutDir>C:\Users\panagiotis\Documents\Visual Studio 2017\Projects\travelling-beagle\travelling-beagle\wwwroot\js</TypeScriptOutDir>
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>

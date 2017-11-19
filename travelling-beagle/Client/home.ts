@@ -32,7 +32,6 @@ function filterChange(dataMap: any) {
             link.classList.remove('hidden');
 
             if (text.length > 0 && link.innerText.toLowerCase().indexOf(text) < 0) {
-                console.log(link.innerText);
                 link.classList.add('hidden');
             } else {
                 // country should be displayed

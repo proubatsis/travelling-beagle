@@ -25,17 +25,17 @@ nav.navbar {
     color: #fafafa;
     margin-bottom: 0.25em;
     box-shadow: 0px 0.05em 5px #000;
-
     position: fixed;
     left: 0px;
     top: 0px;
     width: 100%;
     z-index: 100;
+    text-align: center;
+    padding: 0.25em;
 }
 
 .site-name {
-    text-align: center;
-    padding: 0.25em;
+    display: inline;
 }
 
 .site-name a {
@@ -44,6 +44,13 @@ nav.navbar {
 
 .site-name a:hover {
     color: #c7c7c7;
+}
+
+#navMenuButton {
+    float: left;
+    cursor: pointer;
+    padding: 0.25em;
+    display: none;
 }
 
 .filter-countries {
@@ -55,19 +62,57 @@ nav.navbar {
 
 .filter-countries i {
     padding: 0.25em;
+    float: left;
+}
+
+.filter-countries #closeSideMenu {
+    float: right;
+    display: inline;
 }
 
 .filter-countries input {
     border: none;
     border-color: #e4e65e;
     background: rgba(0, 0, 0, 0);
-    float: left;
 }
 
 .filter-countries input:focus {
     border-color: rgba(0, 0, 0, 0);
 }
 
-@media min-width (750px) {
+#sideMenu {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    min-height: 100%;
+    z-index: 150;
+    background: #fff;
+    transition: left 0.32s;
+}
 
+#sideMenuEntries {
+    overflow-y: scroll;
+    max-height: 48em;
+}
+
+#closeSideMenu {
+    cursor: pointer;
+}
+
+@media (min-width: 400px) {
+    #sideMenu {
+        left: -100%;
+        min-width: 100%;
+    }
+
+    #sideMenu .filter-countries {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 750px) {
+    #sideMenu {
+        left: -25%;
+        min-width: 25%;
+    }
 }

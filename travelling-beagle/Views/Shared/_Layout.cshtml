@@ -9,20 +9,34 @@
     <link rel="stylesheet" href="~/lib/skeleton/css/normalize.css" />
     <link rel="stylesheet" href="~/css/common.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     @RenderSection("Styles", false)
 </head>
 <body>
     <nav class="navbar">
-        <div class="container">
-            <div class="ten columns site-name">
-                <a href="/">Travelling Beagle</a>
-            </div>
+        <i id="navMenuButton" class="material-icons">menu</i>
+        <div class="site-name">
+            <a href="/">Travelling Beagle</a>
         </div>
     </nav>
 
     <div class="cointainer">
         @RenderBody()
     </div>
+
+    <div id="sideMenu">
+        <div class="filter-countries">
+            <i class="material-icons">search</i>
+            <input id="sideMenuCountryFilter" type="text" placeholder="Filter" />
+            <i id="closeSideMenu" class="material-icons">close</i>
+        </div>
+
+        <div id="sideMenuEntries">
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/js/common.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
