@@ -1,19 +1,73 @@
 ﻿body {
     font-family: 'Times New Roman', Times, serif;
-    background: #386AAF;
-    color: #DBB8A4;
+    background: #fafafa;
+    color: #3e2723;
+    padding-top: 4em;
 }
 
 a {
-    color: #F1FDFD;
+    color: #3e2723;
     font-weight: bold;
     text-decoration: none;
 }
 
 a:hover {
-    color: #C0CACA;
+    color: #3e2723;
 }
 
 .hidden {
     display: none;
+}
+
+nav.navbar {
+    font-size: 1.5em;
+    background: #afb42b;
+    color: #fafafa;
+    margin-bottom: 0.25em;
+    box-shadow: 0px 0.05em 5px #000;
+
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 100;
+}
+
+.site-name {
+    text-align: center;
+    padding: 0.25em;
+}
+
+.site-name a {
+    color: #fafafa;
+}
+
+.site-name a:hover {
+    color: #c7c7c7;
+}
+
+.filter-countries {
+    border-style: solid;
+    border-color: #7c8500;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.filter-countries i {
+    padding: 0.25em;
+}
+
+.filter-countries input {
+    border: none;
+    border-color: #e4e65e;
+    background: rgba(0, 0, 0, 0);
+    float: left;
+}
+
+.filter-countries input:focus {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+@media min-width (750px) {
+
 }

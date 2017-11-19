@@ -8,9 +8,18 @@
     <link rel="stylesheet" href="~/lib/skeleton/css/skeleton.css" />
     <link rel="stylesheet" href="~/lib/skeleton/css/normalize.css" />
     <link rel="stylesheet" href="~/css/common.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @RenderSection("Styles", false)
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="ten columns site-name">
+                <a href="/">Travelling Beagle</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="cointainer">
         @RenderBody()
     </div>

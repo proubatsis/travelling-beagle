@@ -1,4 +1,14 @@
-﻿.country-image {
+﻿.country-section {
+    background: #fff;
+    margin: 5px;
+}
+
+.country-section h2 {
+    background: #7c8500;
+    color: #fafafa;
+}
+
+.country-image {
     overflow: hidden;
     padding: 0.25em;
     cursor: pointer;
@@ -70,6 +80,7 @@
 #overlayImage {
     position: absolute;
     top: 8em;
+    box-shadow: 0.25em 0.25em 15px #000;
 }
 
 #overlayX {
@@ -100,5 +111,9 @@
 
     .desktop-only {
         display: block;
+    }
+
+    .country-section {
+        min-height: 24em;
     }
 }

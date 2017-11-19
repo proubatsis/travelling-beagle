@@ -65,11 +65,11 @@ const dataMap = new Datamap({
     element: mapContainer,
     responsive: true,
     fills: {
-        defaultFill: '#03155A',
-        FOCUSED: '#DBB8A4'
+        defaultFill: '#c7c7c7',
+        FOCUSED: '#e4e65e'
     },
     geographyConfig: {
-        highlightFillColor: '#877260'
+        highlightFillColor: '#e4e65e'
     }
 });
 
